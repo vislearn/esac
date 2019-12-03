@@ -1,0 +1,7 @@
+../../datasets/7scenes_chess -0.006378 -0.158068 1.608667
+../../datasets/7scenes_fire -0.372936 0.202488 1.716795
+../../datasets/7scenes_heads 0.099536 0.143322 0.811527
+../../datasets/7scenes_office 0.214342 -0.421638 2.137722
+../../datasets/7scenes_pumpkin -0.173342 -0.787906 2.342458
+../../datasets/7scenes_redkitchen -0.681654 -0.491324 2.455781
+../../datasets/7scenes_stairs -0.000601 -0.170128 1.777769
