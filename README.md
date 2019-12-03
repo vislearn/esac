@@ -28,6 +28,7 @@ A gating network decides which expert is responsible for a given input image.
 ESAC builds upon [Scene Coordinate Regression](https://ieeexplore.ieee.org/document/6619221) and [differentiable RANSAC (DSAC)](https://arxiv.org/abs/1611.05705), in particular it extends our previous re-localization pipeline, [DSAC++](https://github.com/vislearn/LessMore), and makes it scalable.
 
 Please refer to the [ESAC paper](https://arxiv.org/abs/1908.02484) for a detailed, and formal description of the method. You find a bibtex reference of the paper at the end of this readme.
+The [ESAC project page](https://hci.iwr.uni-heidelberg.de/vislearn/research/scene-understanding/pose-estimation/#ICCV19) collects pointers to additional resources.
 
 ## Installation
 
