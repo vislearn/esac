@@ -6,11 +6,11 @@
 - [Data Structure](#data-structure)
     - [Environments](#environments)
     - [Dataset Classes](#dataset-classes)
-    - [Emulating DSAC++](#emulating-dsac++)
+    - [Emulating DSAC++](#emulating-dsac)
 - [Supported Datasets](#supported-datasets)
-    - [7/12/19 Scenes](#7/12/19-scenes)
+    - [7/12/19 Scenes](#71219-scenes)
     - [Dubrovnik](#dubrovnik)
-    - [Aachen Day/Night](#aachen-day/night)
+    - [Aachen Day/Night](#aachen-daynight)
 - [Training ESAC](#training-esac)
 - [Testing ESAC](#testing-esac)
 - [Publication](#publication)
@@ -85,7 +85,7 @@ This repository contains:
 
 -------
 The core of the code are the scripts `train_esac.py` and `test_esac.py`. The exact [training](#training-esac) and [testing](#testing-esac) procedure will be discussed below.
-ESAC is trained for a specific `environment` which consists of a combination of datasets from the `dataset` folder. For example, for the 19Scenes environment discussed in the paper, we combine the 7Scenes and 12Scenes datasets. We explain the details of the data setup next.
+ESAC is trained for a specific `environment` which consists of a combination of datasets from the `datasets` folder. For example, for the 19Scenes environment discussed in the paper, we combine the 7Scenes and 12Scenes datasets. We explain the details of the data setup next.
 
 ## Data Structure
 
@@ -120,7 +120,7 @@ Correspondences of files across the different sub-folders will be established by
 
 ### Environments
 
-An environment is a combination of individual dataset scenes, e.g. in the paper combine all individual scenes from the 7Scenes and 12Scenes datasets to the 19Scenes environment.
+An environment is a combination of individual dataset scenes, e.g. in the paper we combine all individual scenes from the 7Scenes and 12Scenes datasets to the 19Scenes environment.
 We use a simple text file called `env_list.txt` to configure an environment. 
 It contains a reference to a dataset scene in each line, of the following form:
 
@@ -160,10 +160,10 @@ When you provide an `env_list.txt` with only one entry, and set the number of cl
 
 We support the following datasets that have been used in the paper:  
 
-- [7Scenes](#7/12/19-scenes)
-- [12Scenes](#7/12/19-scenes)
+- [7Scenes](#71219-scenes)
+- [12Scenes](#71219-scenes)
 - [Dubrovnik](#dubrovnik)
-- [Aachen Day/Night](#aachen-day/night)
+- [Aachen Day/Night](#aachen-daynight)
 
 We provide scripts to download and transform each dataset into the format required by ESAC. Note that for the Dubrovnik dataset, the original images are not freely available. See details below.
 
@@ -183,7 +183,9 @@ We also provide pre-trained models of ESAC for all these scenarios, see the down
 After downloading, you can evaluate our pre-trained models by calling:
 
 ```bash
-python ../../code/test_esac.py -sid pretrained
+environments/7scenes> python ../../code/test_esac.py -sid pretrained
+environments/12cenes> python ../../code/test_esac.py -sid pretrained
+environments/19scenes> python ../../code/test_esac.py -sid pretrained
 ```
 
 **Note:** Running `test_esac.py` will create a pose output file with estimated poses. 
@@ -193,7 +195,7 @@ The output poses will follow the grid-based global coordinate system, **not** th
 
 ![](dubrovnik.png)
 
-The [Dubrovnik6k (cornell)](http://www.cs.cornell.edu/projects/p2f/) is a large-scale outdoor re-localization dataset. 
+[Dubrovnik6k (cornell)](http://www.cs.cornell.edu/projects/p2f/) is a large-scale outdoor re-localization dataset. 
 We apply ESAC using the `cluster_dataset.py` to break it down into smaller chunks.
 We provide a script to convert the Dubrovnik dataset in the `datasets` folder (linux only, please adapt the script for other operating systems).
 Executing the script requires a command line parameter `--dbfolder` which contains the original 6844 dataset images. 
@@ -207,7 +209,7 @@ After downloading, three pre-trained models will be available, corresponding to 
 You can evaluate e.g. our pre-trained model with 10 experts by calling:
 
 ```bash
-python ../../code/test_esac.py -c 10 -sid c10_pretrained
+environments/dubrovnik> python ../../code/test_esac.py -c 10 -sid c10_pretrained
 ```
 
 
@@ -216,7 +218,7 @@ python ../../code/test_esac.py -c 10 -sid c10_pretrained
 
 ![](aachen.png)
 
-The [Aachen Day/Night (Sattler)](https://www.visuallocalization.net/datasets/) is a large-scale outdoor re-localization dataset. 
+[Aachen Day/Night (Sattler)](https://www.visuallocalization.net/datasets/) is a large-scale outdoor re-localization dataset. 
 We apply ESAC using the `cluster_dataset.py` to break it down into smaller chunks.
 We provide a script to download and convert the Aachen dataset in the `datasets` folder (linux only, please adapt the script for other operating systems).
 Executing the script will particularly generate sparse scene coordinate ground truth files from the structure-from-motion reconstruction.
@@ -231,7 +233,7 @@ After downloading, three pre-trained models will be available, corresponding to 
 You can run e.g. our pre-trained model with 10 experts by calling:
 
 ```bash
-python ../../code/test_esac.py -c 10 -sid c10_pretrained
+environments/aachen> python ../../code/test_esac.py -c 10 -sid c10_pretrained
 ```
 
 As mentioned above, there is no test ground truth available, and the evaluation script will display arbitrary pose errors corresponding to our dummy ground truth.
@@ -258,13 +260,13 @@ To separate different training runs (e.g. due to different parameter settings), 
 
 To initialize the gating network call:
 ```bash
-python ../../code/init_gating.py 
+environments/env_name> python ../../code/init_gating.py 
 ```
 The script will train the gating network to classify the correct scene/cluster.
 
 To initialize an expert network call:
 ```bash
-python ../../code/init_expert.py -e <expert id>
+environments/env_name> python ../../code/init_expert.py -e <expert id>
 ```
 The script will train an expert using ground truth scene coordinates.
 
@@ -273,7 +275,7 @@ Because the initialization of each expert is independent, you can run them in pa
 
 Optionally, you can refine an expert by calling:
 ```bash
-python ../../code/ref_expert.py -e <expert id>
+environments/env_name> python ../../code/ref_expert.py -e <expert id>
 ```
 Refinement will optimize the reprojection error of scene coordinate predictions, independent of any scene coordinate ground truth. 
 We adivse this step, if scene coordinate ground truth is sparse or unreliable, e.g. we did refinement for Dubrovnik and Aachen, but not for 7/12/19Scenes.
@@ -283,7 +285,7 @@ If you do refinement, be sure to call the end-to-end training (next point) with 
 
 To perform end-to-end training of all networks call:
 ```bash
-python ../../code/train_esac.py
+environments/env_name> python ../../code/train_esac.py
 ```
 
 The result will be stored as `esac_.net`, a model file which contains the *whole ensemble* of networks, i.e. all experts and the gating network.
@@ -297,7 +299,7 @@ Note that this limit is independent of the actual number of experts used in the 
 
 To test ESAC call:
 ```bash
-python ../../code/test_esac.py
+environments/env_name> python ../../code/test_esac.py
 ```
 
 This will estimate poses for the test set, and compare them to the respective ground truth.
@@ -309,7 +311,7 @@ Running the script creates two output files:
 
 **Note:** The Aachen dataset has no public test ground truth.
 The evaluation script will display arbitrary pose errors corresponding to our dummy ground truth.
-To evaluate , upload `poses_esac_.txt` to the [Aachen benchmark website](https://www.visuallocalization.net/submission/). 
+To evaluate, upload `poses_esac_.txt` to the [Aachen benchmark website](https://www.visuallocalization.net/submission/). 
 
 Call the test script with the `-h` option to see a listing of all supported command line arguments.
 
