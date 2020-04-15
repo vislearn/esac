@@ -10,7 +10,7 @@ import numpy as np
 
 import cv2 as cv
 
-# name of the folder where we download the original dubrovnik dataset to
+# name of the folder where we download the original aachen dataset to
 src_folder = 'aachen_source'
 
 # destination folder that will contain the dataset in our format
@@ -42,16 +42,16 @@ def dl_file(url, file):
 		print("Error: Download of %s failed. Quota exceeded? (Try again later.)" % file)
 		exit()
 
-#dl_file("https://drive.google.com/uc?id=18vz-nCBFhyxiX7s-zynGczvtPeilLBRB", image_file)
-#dl_file("https://drive.google.com/uc?id=0B7s5ESv70mytamRSY0J1dWs4aE0", recon_file)
-#dl_file("https://drive.google.com/uc?id=0B7s5ESv70mytQldWbEdrODBlOFE", db_file)
-#dl_file("https://drive.google.com/uc?id=0B7s5ESv70mytQS1MSmlIVVZzaGM", day_file)
-#dl_file("https://drive.google.com/uc?id=0B7s5ESv70mytTWZmTFoxUkNYZW8", night_file)
+dl_file("https://drive.google.com/uc?id=18vz-nCBFhyxiX7s-zynGczvtPeilLBRB", image_file)
+dl_file("https://drive.google.com/uc?id=0B7s5ESv70mytamRSY0J1dWs4aE0", recon_file)
+dl_file("https://drive.google.com/uc?id=0B7s5ESv70mytQldWbEdrODBlOFE", db_file)
+dl_file("https://drive.google.com/uc?id=0B7s5ESv70mytQS1MSmlIVVZzaGM", day_file)
+dl_file("https://drive.google.com/uc?id=0B7s5ESv70mytTWZmTFoxUkNYZW8", night_file)
 	
 # unpack and delete image zip file
-#f = zipfile.PyZipFile(image_file)
-#f.extractall()
-#os.system('rm ' + image_file)
+f = zipfile.PyZipFile(image_file)
+f.extractall()
+os.system('rm ' + image_file)
 
 def create_training_set(image_file):
 
