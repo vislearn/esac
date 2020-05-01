@@ -113,7 +113,7 @@ Correspondences of files across the different sub-folders will be established by
 
 **Details for image files**: Any format supported by `scikit-image`.
 
-**Details for calibration files**: Text file. Contains 4x4 matrix following the 7Scenes/12Scenes coordinate convention.  
+**Details for pose files**: Text file. Contains 4x4 matrix following the 7Scenes/12Scenes coordinate convention.  
 
 **Details for calibration files**: Text file. At the moment we only support the camera focal length (one value shared for x- and y-direction, in px). The principal point is assumed to lie in the image center.
 
