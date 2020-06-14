@@ -163,7 +163,7 @@ for epoch in range(epochs):
 			pp_y,
 			opt.threshold,			
 			opt.inlieralpha,
-			opt.inlieralpha,
+			opt.inlierbeta,
 			opt.maxreprojection,
 			Expert.OUTPUT_SUBSAMPLE)
 
