@@ -43,7 +43,7 @@ opt = parser.parse_args()
 if opt.clusters < 0:
 
 	# === pre-clustered environment according to environment file ===========
-	from dataset import RoomDataset
+	from room_dataset import RoomDataset
 	trainset = RoomDataset("training", scene=opt.expert)
 
 else:
