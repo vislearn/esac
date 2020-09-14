@@ -1,6 +1,6 @@
 #!/bin/bash
 
-url=https://cloudstore.zih.tu-dresden.de/index.php/s/krszHYbHetxjmqp/download
+url=https://heidata.uni-heidelberg.de/api/access/datafile/:persistentId?persistentId=doi:10.11588/data/GSJE9D/LR30LR
 filename=aachen.tar.gz
 
 wget $url -O $filename
