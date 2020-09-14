@@ -1,6 +1,6 @@
 #!/bin/bash
 
-url=https://cloudstore.zih.tu-dresden.de/index.php/s/WGPtxD8yNX7mxyw/download
+url=https://heidata.uni-heidelberg.de/api/access/datafile/:persistentId?persistentId=doi:10.11588/data/GSJE9D/TJUW9X
 filename=dubrovnik.tar.gz
 
 wget $url -O $filename
