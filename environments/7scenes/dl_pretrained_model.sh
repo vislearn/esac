@@ -1,6 +1,6 @@
 #!/bin/bash
 
-url=https://cloudstore.zih.tu-dresden.de/index.php/s/8K7R9SnJPGNHy5y/download
+url=https://heidata.uni-heidelberg.de/api/access/datafile/:persistentId?persistentId=doi:10.11588/data/GSJE9D/07NJZQ
 filename=7scenes.tar.gz
 
 wget $url -O $filename
