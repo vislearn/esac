@@ -13,7 +13,7 @@ def mkdir(directory):
 print("=== Downloading ESAC Initialization Files ===============================")
 
 # our initilization file package include the base folder structure for the 7 scenes
-os.system('wget -O 7scenes_init.tar.gz https://cloudstore.zih.tu-dresden.de/index.php/s/NweFvS5aG70nj8s/download')
+os.system('wget -O 7scenes_init.tar.gz https://heidata.uni-heidelberg.de/api/access/datafile/:persistentId?persistentId=doi:10.11588/data/GSJE9D/RG00C4')
 
 # unpack and delete tar file
 os.system('tar -xvzf 7scenes_init.tar.gz')
