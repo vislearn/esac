@@ -13,7 +13,7 @@ src_folder = '12scenes_source'
 print("=== Downloading ESAC Initialization Files ===============================")
 
 # our initilization file package include the base folder structure for the 12 scenes
-os.system('wget -O 12scenes_init.tar.gz https://cloudstore.zih.tu-dresden.de/index.php/s/ZOpPQgN6L6OXPYn/download')
+os.system('wget -O 12scenes_init.tar.gz https://heidata.uni-heidelberg.de/api/access/datafile/:persistentId?persistentId=doi:10.11588/data/GSJE9D/FSEFPP')
 
 # unpack and delete tar file
 os.system('tar -xvzf 12scenes_init.tar.gz')
